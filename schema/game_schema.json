@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Learning Game Engine Configuration",
+  "type": "object",
+
+  "required": ["engineVersion", "gameType", "metadata", "settings", "content"],
+
+  "properties": {
+
+    "engineVersion": {
+      "type": "string"
+    },
+
+    "gameType": {
+      "type": "string",
+      "enum": ["quiz", "memory", "dragdrop", "sequence"]
+    },
+
+    "metadata": {
+      "type": "object",
+      "required": ["title"],
+      "properties": {
+        "title": { "type": "string" },
+        "author": { "type": "string" }
+      }
+    },
+
+    "settings": {
+      "type": "object",
+      "properties": {
+        "timeLimit": { "type": "number" },
+        "maxScore": { "type": "number" },
+        "difficulty": {
+          "type": "string",
+          "enum": ["easy", "medium", "hard"]
+        }
+      }
+    },
+
+    "content": {
+      "type": "object",
+      "properties": {
+
+        "questions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+
+            "required": ["id", "question", "options", "answer"],
+
+            "properties": {
+              "id": { "type": "number" },
+              "question": { "type": "string" },
+              "options": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "answer": { "type": "string" }
+            }
+          }
+        }
+
+      }
+    },
+
+    "ui": {
+      "type": "object",
+      "properties": {
+        "theme": {
+          "type": "string",
+          "enum": ["light", "dark"]
+        },
+        "showTimer": { "type": "boolean" }
+      }
+    }
+
+  }
+}
