@@ -2,7 +2,7 @@ Reusable Web-Based Learning Game Engine
 Core Systems Competition — Checkpoint 1
 Team Information
 Team Name: Noir12
-Repository:
+Repository:https://github.com/vamika121208/Learning-game-engine
 1. Introduction
 Educational games are commonly developed as standalone applications where the game logic and
 educational content are tightly coupled. This approach limits scalability, reusability, and rapid
