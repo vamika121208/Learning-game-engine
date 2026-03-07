@@ -1,0 +1,183 @@
+Reusable Web-Based Learning Game Engine
+Core Systems Competition — Checkpoint 1
+Team Information
+Team Name: Noir12
+
+1. Introduction
+Educational games are commonly developed as standalone applications where the game logic and
+educational content are tightly coupled. This approach limits scalability, reusability, and rapid
+content creation.
+Our project proposes a Reusable Web-Based Learning Game Engine that separates engine logic,
+game modules, and learning content. The engine allows multiple educational games to be
+generated dynamically using JSON configuration files, eliminating the need to modify core engine
+code when creating new learning experiences.
+This design enables educators and developers to create new games by simply modifying
+configuration files while the engine handles execution, rendering, and gameplay logic.
+
+2. System Objectives
+The primary objectives of the system are:
+• Develop a modular and reusable game engine
+• Support multiple learning game types
+• Enable JSON-driven configuration
+• Maintain separation between logic and content
+• Ensure scalability and extensibility
+The system is designed so that new game types and educational content can be added without
+modifying the engine core.
+
+3. System Architecture
+The architecture of the engine follows a modular layered design.The system is composed of the following components:
+JSON Configuration Layer
+Contains all game definitions including rules, content, UI settings, and difficulty parameters.
+Config Loader
+Responsible for loading and validating JSON configuration files before the game begins.
+Game Engine Core
+The central controller responsible for managing game state, initializing modules, and running the
+engine loop.
+Module System
+Game mechanics are implemented as modules such as quiz, memory, or drag-and-drop games.
+UI Renderer
+Responsible for rendering the game interface and displaying interactive elements.
+Input Handler
+Captures user actions and sends events to the engine.
+
+System Diagram
+JSON Configuration
+↓
+Config Loader
+↓
+Game Engine Core
+↓
+Module Registry
+↓
+Game Modules
+(Quiz / Memory / Drag-Drop)
+↓
+UI Renderer
+↓
+Player InteractionArchitecture Flow
+
+The system operates according to the following flow:
+1. Game configuration is loaded from a JSON file.
+2. The configuration is parsed and validated by the Config Loader.
+3. The Game Engine initializes the appropriate module based on the gameType.
+4. The engine starts the game loop.
+5. User input is processed and the game state is updated.
+6. The UI Renderer updates the game interface.
+7. The process repeats until the game ends.
+4. Core Engine Loop
+
+The engine operates using a continuous control loop that manages gameplay.
+Engine Loop Steps
+1. Load configuration
+2. Initialize game module
+3. Process user input
+4. Update game state
+5. Render updated UI
+6. Check win/termination conditions
+7. Repeat until game completion
+
+Engine Loop Pseudocode
+
+loadConfig()
+initializeModule()
+while(gameRunning):
+input = getUserInput()
+updateGameState(input)
+renderUI()
+checkGameEndCondition()
+This loop allows the same engine to support multiple game types while maintaining consistent
+execution flow.5. JSON Configuration Design
+The engine is designed to be JSON-driven, meaning that game behavior and content are defined
+entirely through configuration files.
+Each configuration file contains information about:
+• game type
+• metadata
+• gameplay settings
+• educational content
+• UI preferences
+JSON Schema Structure
+{
+}
+"engineVersion": "1.0",
+"gameType": "quiz",
+"metadata": {
+"title": "Math Challenge",
+"author": "Team"
+},
+"settings": {
+"timeLimit": 30,
+"maxScore": 100,
+"difficulty": "easy"
+},
+"content": {
+"questions": [
+{
+"id": 1,
+"question": "2 + 3 = ?",
+"options": ["4", "5", "6"],
+"answer": "5"
+}
+]
+},
+"ui": {
+"theme": "light",
+"showTimer": true
+}
+
+6. Reusability Model
+The system follows a component-based modular architecture to maximize reusability.
+Game mechanics are implemented as independent modules that follow a standardized interface.Example Modules
+• Quiz Module
+• Memory Matching Module
+• Drag-and-Drop Module
+• Sequence Builder Module
+Each module implements the following functions:
+init(config)
+update(input)
+render()
+endGame()
+Because of this design:
+• The engine core remains unchanged
+• Modules define gameplay behavior
+• JSON defines learning content
+This enables rapid creation of new games without modifying the engine logic.
+
+7. Module Registry System
+To support extensibility, the engine uses a module registry system.
+Modules register themselves with the engine and are dynamically loaded based on the gameType
+specified in the JSON configuration.
+Example:
+registerModule("quiz", QuizModule)
+registerModule("memory", MemoryModule)
+When a configuration file specifies:
+"gameType": "quiz"
+the engine automatically loads the corresponding module.
+This allows the engine to support new game types without modifying existing code.
+
+8. Example Learning Games Generated by the
+Engine
+Using the same engine, multiple educational games can be created:
+• Mathematics Quiz
+• Vocabulary Builder
+• Capital Cities Quiz• Memory Matching Game
+• Image Identification Game
+Each of these games is generated using different JSON configurations while the engine code
+remains unchanged.
+
+9. Scalability and Extensibility
+The architecture is designed to support future enhancements including:
+• additional game modules
+• multiplayer learning modes
+• analytics and progress tracking
+• teacher dashboards
+• adaptive difficulty systems
+The modular design ensures that these features can be integrated without restructuring the core
+engine.
+
+10. Conclusion
+This project demonstrates the design of a reusable learning game engine that separates gameplay
+logic from educational content using JSON configuration.
+The modular architecture allows the engine to generate multiple learning experiences while
+maintaining scalability and extensibility.
+By focusing on clean system architecture, modular design, and configuration-driven gameplay,
+the engine provides a flexible platform for building interactive educational games.
