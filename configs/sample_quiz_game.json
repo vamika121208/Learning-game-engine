@@ -12,6 +12,7 @@
     "shuffleQuestions": true,
     "timeLimit": 30,
     "maxScore": 100,
+    "difficulty": "easy"
   },
 
   "levels": [
