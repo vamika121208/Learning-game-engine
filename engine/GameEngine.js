@@ -14,7 +14,6 @@ class GameEngine {
     }
     this.module = new Module()
     this.module.init(this.config)
-    this.loop()
   }
   loop(){
     this.render()
